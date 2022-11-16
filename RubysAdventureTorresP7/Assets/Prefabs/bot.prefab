@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 44200599826584989}
   - component: {fileID: 44200599826584988}
   - component: {fileID: 1141507416650191380}
+  - component: {fileID: 4658967434753407788}
   m_Layer: 0
   m_Name: bot
   m_TagString: Untagged
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &44200599826584989
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100,10 +101,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000035762787, y: -0.78594595}
+  m_Offset: {x: -0.024941683, y: 0.48186833}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
@@ -111,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.51288486, y: 0.98810804}
+  m_Size: {x: 0.4649043, y: 0.81408703}
   m_EdgeRadius: 0
 --- !u!50 &44200599826584988
 Rigidbody2D:
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1141507416650191380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +147,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c243df6bce156b4681f538fa2df553c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  vertical: 0
+  speed: 1
+  vertical: 1
   changeTime: 3
+--- !u!95 &4658967434753407788
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44200599826584985}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24f4ed89fb9126747ba5c57bcc6faa7f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
