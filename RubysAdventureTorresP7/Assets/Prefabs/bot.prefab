@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   vertical: 0
-  changeTime: 0
+  changeTime: 2
 --- !u!95 &4658967434753407788
 Animator:
   serializedVersion: 4
