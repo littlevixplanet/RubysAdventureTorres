@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public AudioClip collectedClip;
     Rigidbody2D rigidbody2d;
     // Start is called before the first frame update
     void Awake()

@@ -18,9 +18,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-
         timer = changeTime;
-
         animator = GetComponent<Animator>();
     }
     void update()
@@ -38,27 +36,28 @@ public class EnemyController : MonoBehaviour
     }
     // Update is called once per frame
     void FixedUpdate()
+{ 
+    if (!broken)
     {
-        if (!broken)
-        {
-            return;
-        }
-        Vector2 position = rigidbody2D.position;
-        if (vertical)
-        {
-            position.y = position.y + Time.deltaTime * speed * direction;
-            animator.SetFloat("Move X", 0);
-            animator.SetFloat("Move Y", direction);
-        }
-        else
-        {
-            position.x = position.x + Time.deltaTime * speed * direction;
-            animator.SetFloat("Move X", direction);
-            animator.SetFloat("Move Y", 0);
-        }
-        rigidbody2D.MovePosition(position);
+    return;
     }
-    void OnCollisionEnter2D(Collision2D other)
+    Vector2 position = rigidbody2D.position;
+    if (vertical)
+    {
+    position.y = position.y + Time.deltaTime * speed * direction;
+    animator.SetFloat("Move X", 0);
+    animator.SetFloat("Move Y", direction);
+    }
+    else
+    {
+    position.x = position.x + Time.deltaTime * speed * direction;
+    animator.SetFloat("Move X", direction);
+    animator.SetFloat("Move Y", 0);
+    }
+
+    rigidbody2D.MovePosition(position);
+}
+void OnCollisionEnter2D(Collision2D other)
     {
         RubyController player = other.gameObject.GetComponent<RubyController>();
         if (player != null)
@@ -71,7 +70,6 @@ public class EnemyController : MonoBehaviour
         broken = false;
         rigidbody2D.simulated = false;
         animator.SetTrigger("Fixed");
-
         smokeEffect.Stop();
     }
 }

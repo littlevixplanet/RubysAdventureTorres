@@ -15,7 +15,7 @@ public class RubyController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
-
+    AudioSource audioSource;
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
@@ -24,10 +24,13 @@ public class RubyController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
         currentHealth = maxHealth;
+        audioSource = GetComponent<AudioSource>();
     }
-
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -53,13 +56,24 @@ public class RubyController : MonoBehaviour
         {
             Launch();
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("npc"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    character.DisplayDialog();
+                }
+            }   
+        }
     }
     void FixedUpdate()
     {
         Vector2 position = rigidbody2d.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
-
         rigidbody2d.MovePosition(position);
     }
     public void ChangeHealth(int amount)
@@ -68,12 +82,10 @@ public class RubyController : MonoBehaviour
         {
             if (isInvincible)
                 return;
-
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
     void Launch()
@@ -82,7 +94,6 @@ public class RubyController : MonoBehaviour
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
-
         animator.SetTrigger("Launch");
     }
 }
